@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+ 	<meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<title>找销网简历</title>
+	<meta name="keywords" content="navigation"/>
+	<meta name="descration" contant="work"/>
+		      
+
+<link type="text/css" rel="stylesheet"  href="../css/jianli.css" source="widget"/>
+</head>
+<body>
+<div class="zxhead">
+	<div class="zxnei1 clearfix">
+		<img class="zximg" src="image/zximg.png"/>
+		<ul class="zxul1" id="obt">
+			<li class="obtn"><a href="#">首页</a></li>
+			<li><a href="#">公司</a></li>
+			<li><a href="#">我的简历</a></li>
+		</ul>
+		<div class="zxri" id="lala">
+			<p id="mp">王成伟</p>
+			<select id="ulaa">
+				<option>王成伟</option>
+				<option>刘大成</option>
+				<option>李大伟</option>
+				<option>牛牛牛</option>
+			</select>
+		</div>
+	</div>
+</div>
+
+<div class="sec clearfix" id="all">
+	<div class="sec-l">
+		<div class="bb clearfix">
+			<h3>我的简历</h3>
+			<span>预览简历</span>
+		</div>
+
+		<div id="oum1"><!--基本信息-->
+			<div class="blu-b">
+				基本信息<a class="curriy" v-bind:class="{ 'bbb': cur1.isB}" href="javascript:;" v-on:click="bj1($event,'cur1',resume.base)">编辑</a>
+			</div>
+
+			<div class="block1" v-bind:class="{ 'bbb': cur1.isB}">
+				<div class="neibian clearfix">
+					<div class="a-le">
+						<div class="ming clearfix">
+							<h3>{{resume.base.name}}</h3><p><span>{{resume.base.picked}}</span>/<span>{{resume.base.age}}</span></p>
+						</div>
+						<div class="zhu clearfix"><span>现居地：<a href="">{{resume.base.selected2}}</a></span><span>户口地：<a href="">{{resume.base.selected3}}</a></span></div>
+						<div class="zhu clearfix"><span>工作经验：<a href="">{{resume.base.selected1}}</a></span><span>状态：<a href="">{{resume.base.checkedname}}</a></span></div>
+					</div>
+					<div class="a-ri">
+						<img src="image/cy.png" alt="picture">
+					</div>
+				</div>
+			</div>
+
+			<div class="in-pu clearfix block2" v-bind:class="{ 'aaa': cur1.isA}" >
+				<div class="in-le">
+					<input class="input1 ma1" v-model="resume.base.name" placeholder="姓名"/>
+					<div class="input2">
+						<span>性别：</span>
+						<label class="macs" for="one"><input type="radio" value="男" id="one" v-model="resume.base.picked"/><span>男</span></label>
+						<label for="two"><input type="radio" value="女" id="two" v-model="resume.base.picked" checked="checked"/><span>女</span></label>
+					</div>
+					<div class="clear"></div>
+					
+					<input class="input1 ma2" type="text" v-model="resume.base.age"/>
+					<div class="xl jben" id="xxl1">
+						<select v-model="resume.base.selected1">
+							<option>工作经验</option>
+							<option>一年以下</option>
+							<option>一年</option>
+							<option>二年</option>
+							<option>三年</option>
+							<option>三年以上</option>
+						</select>
+						<p id="p1"> {{ resume.base.selected1 | typeSelect "工作经验"}}<span></span></p>
+						
+					</div>
+					<div class="xl">
+						<p id="p2">{{ resume.base.selected2| typeSelect "现居地（省）"}}<span></span></p>
+						<select v-model="resume.base.selected2">
+							<option>现居地（省）</option>
+							<option>北京</option>
+							<option>上海</option>
+							<option>新疆</option>
+							<option>广东</option>
+							<option>浙江</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl3">
+						<p id="p3">现居地（市）<span></span></p>
+						<select id="oul3">
+							<option>北京</option>
+							<option>上海</option>
+							<option>乌鲁木齐</option>
+							<option>广州</option>
+							<option>义乌</option>
+						</select>
+					</div>
+					<div class="xl">
+						<p id="p4"> {{ resume.base.selected3 | typeSelect "户口地（省）"}}<span></span></p>
+						<select  v-model="resume.base.selected3">
+							<option>户口地（省）</option>
+							<option>北京</option>
+							<option>上海</option>
+							<option>新疆</option>
+							<option>广东</option>
+							<option>浙江</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl5">
+						<p id="p5">户口地（市）<span></span></p>
+						<select id="oul5">
+							<option>北京</option>
+							<option>上海</option>
+							<option>乌鲁木齐</option>
+							<option>广州</option>
+							<option>义乌</option>
+						</select>
+					</div>
+				</div>
+				<div class="in-ri">
+					<div class="bg-tou">
+						<a href="#"></a>
+					</div>
+					<label for="lizhi"><input type="checkbox" checked="checked" id="lizhi" v-model="resume.base.checkedname" value="目前离职中"/>目前离职中</label>
+				</div>
+				<div class="in-le1 clearfix">
+					<p class="savep" id="savep1" v-on:click="save1($event,'cur1',resume.base)"/>保存</p><p>取消</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="oum2">
+			<div class="blu-b">
+				联系方式<a class="curriy " href="javascript:;" v-on:click="bj1($event,'cur2',resume.contact)" v-bind:class="{ 'bbb': cur2.isB}">编辑</a>
+			</div>
+			
+			<div class="block1" v-bind:class="{ 'bbb': cur2.isB}">
+				<div class="lianwan clearfix">
+					<p id="telephone">{{resume.contact.tel}}</p><p class="plw">{{resume.contact.mail}}</p>
+				</div>
+			</div>
+
+			<div class="block2" v-bind:class="{ 'aaa': cur2.isA}">
+				<div class="lianxi clearfix">
+					<input class="ma3" type="text" v-model="resume.contact.tel">
+					<input class="ma4" class="in1" type="text" v-model="resume.contact.mail">
+					<div class="in-le1 clearfix">
+						<p class="savep" v-on:click="save1($event,'cur2',resume.contact)">保存</p><p>取消</p>
+					</div>
+					<p class="ema"></p>
+				</div>
+			</div>
+		</div>
+
+		<div id="oum3">
+			<div class="blu-b">
+				个人形象<a class="curriy" href="javascript:;" v-bind:class="{ 'ccc': cur3.isC}" v-on:click="bluetj($event,'cur3',resume.person)">编辑</a>
+			</div>
+
+		    <div class="block1" v-bind:class="{ 'ddd': cur3.isD}">
+		    	<div class="cur-1 clearfix">
+					<a class="spf2" href="javascript:;" v-on:click="bj1($event,'cur3',resume.person)"></a>
+					<p>通过生活照来展示你的形象<br/>提高对企业的吸引力</p>
+					<h3>完善个人形象</h3>
+				</div>
+				
+		    </div>
+
+		    <div class="block2"  v-bind:class="{ 'aaa': cur3.isA}">
+		    	<div class="geren lianxi clearfix" >
+					<div class="in2"><input  class="ma5" type="text" v-model="resume.person.tall"><p>厘米</p></div>
+					<div class="in3"><input class="ma6" class="in1" type="text" v-model="resume.person.weight"><p>公斤</p></div>
+					<div class="clear"></div>
+					<div class="photo">
+						<a href="#"></a>
+						<a href="#"></a>
+						<a href="#"></a>
+					</div>
+					<div class="in-le1 clearfix">
+						<p class="savep" v-on:click="save1($event,'cur3',resume.person)">保存</p><p>取消</p>
+					</div>
+				</div>
+		    </div>
+
+		    <div class="block3"  v-bind:class="{ 'ccc': cur3.isC}">
+		    	<div class="opp-l1">
+					<div class="grxx clearfix">
+						<p>身高：<span>{{resume.person.tall}}厘米</span></p>
+						<p>体重：<span>{{resume.person.weight}}公斤</span></p>
+					</div>
+					<div class="img-g clearfix">
+						<img src="image/img1.png" alt="">
+						<img src="image/img2.png" alt="">
+						<img src="image/img3.png" alt="">
+					</div>
+				</div>
+		    </div>
+		</div>
+
+		<div id="oum4">
+			<div class="blu-b">
+				求职意向<a class="curriy" href="javascript:;" v-bind:class="{ 'ccc': cur4.isC}" v-on:click="bluetj($event,'cur4',resume.hwork)" >编辑</a>
+				<div class="zhihzi zhi22">
+					<p class="zhi">
+						不确定自己期望的行业和职位？使用职业定位助手来帮你吧。
+						<a href="#">点击这里进入</a><span class="zhi2"></span>
+					</p>
+				</div>
+			</div>
+			
+			<div class="block1" v-bind:class="{'ddd': cur4.isD}">
+				<div class="cur-1 clearfix">
+					<a class="spft" href="javascript:;" v-on:click="bj1($event,'cur4',resume.hwork)"></a>
+					<p>填写准确的期望工作能大大提高求职成功率哦…<br/>快来添加期望工作吧！</p>
+					<h3>添加期望工作</h3>
+				</div>
+			</div>
+
+			<div class="block2" v-bind:class="{'aaa':cur4.isA}">
+				<div class="qiuzhi clearfix">
+					<p class="pp">期望行业：</p>
+					<div class="xl" id="xxl6">
+						<p id="p6">{{ resume.hwork.selected1 | typeSelect "(最多选择三个职业)"}}<span></span></p>
+						<select v-model="resume.hwork.selected1">
+							<option>教育</option>
+							<option>研究</option>
+							<option>农林</option>
+							<option>IT/互联网</option>
+							<option>推销</option>
+						</select>
+					</div>
+					<p class="pp">期望职位：</p>
+					<input type="text" v-model="resume.hwork.position" class="ma7">
+					<p class="pp">期望底薪：</p>
+					<input type="text" v-model="resume.hwork.salary" class="ma8">
+					<p class="pp">期望工作地区：</p>
+					<div class="sp">
+						<div class="xl" id="xxl7">
+							<p id="p7">{{ resume.hwork.selected2 | typeSelect "省"}}<span></span></p>
+							<select v-model="resume.hwork.selected2">
+								<option>北京</option>
+								<option>上海</option>
+								<option>新疆</option>
+								<option>广东</option>
+								<option>浙江</option>
+							</select>
+						</div>
+						<div class="xl xxl8" id="xxl8">
+							<p id="p8">{{ resume.hwork.selected3 | typeSelect "市"}}<span></span></p>
+							<select v-model="resume.hwork.selected3">
+								<option>北京</option>
+								<option>上海</option>
+								<option>乌鲁木齐</option>
+								<option>广州</option>
+								<option>义乌</option>
+							</select>
+						</div>
+						<label><input type="checkbox"  name="work"/>可出差</label>
+					</div>
+					<p class="pp">期望销售产品：</p>
+					<input type="text" v-model="resume.hwork.goods" class="dior3">
+					<p class="pp">期望销售方式：</p>
+					<div class="qudao" class="dior4">
+						<label for="way1"><input type="checkbox" v-model="resume.hwork.checkname2" id="way1" value="1"/>店面销售</label>
+						<label for="way2"><input type="checkbox"  v-model="resume.hwork.checkname2" id="way2" value="2"/>渠道销售</label>
+						<label for="way3"><input type="checkbox" v-model="resume.hwork.checkname2" id="way3" value="3"/>电话销售</label>
+						<label for="way4"><input type="checkbox"  v-model="resume.hwork.checkname2" id="way4" value="4"/>网络销售</label>
+						<label for="way5"><input type="checkbox" v-model="resume.hwork.checkname2" id="way5" value="5"/>面访销售</label>
+						<label for="way6"><input type="checkbox"  v-model="resume.hwork.checkname2" id="way6" value="6"/>大客户销售</label>
+					</div>
+					<div class="in-le1 clearfix">
+						<p class="savep" v-on:click="save1($event,'cur4',resume.hwork)">保存</p><p>取消</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="block3 qwhy" v-bind:class="{ 'ccc': cur4.isC}">
+				<div class="yixiang-1">
+					<p>期望行业：<span>{{resume.hwork.selected1}}</span></p>
+					<p>期望职位：<span>{{resume.hwork.position}}</span></p>
+					<p>期望工作地区：<span>{{resume.hwork.selected2}}</span></p>
+					<p>期望底薪：<span>{{resume.hwork.salary}}</span></p>
+					<p>期望销售产品：<span>{{resume.hwork.goods}}</span></p>
+					<p>销售方式：<span>{{resume.hwork.checkname2|typeName}}</span></p>
+				</div>
+			</div>
+		</div>
+
+		<div id="oum5" class="box">
+			<div class="blu-b">
+				工作经历<a class="curriy" href="javascript:;"  v-bind:class="{'ccc':cur5.isC}"  v-on:click="add('cur5',-99,'hiswork')">添加</a>
+				<div class="zhihzi zhi1" id="jinglis">
+					<p class="zhi">
+						你有尚未填写销售业绩的工作经历，完善销售业绩可提升应聘成功率
+						<b class="bacha" id="bacha"></b><span class="zhi2"></span>
+					</p>
+				</div>
+			</div>
+
+			<div class="block1"  v-bind:class="{ 'ddd': cur5.isD}">
+				<div class="cur-1 clearfix ">
+					<a class="spft" href="javascript:;" v-on:click="add('cur5',-100,'hiswork')"></a>
+					<p>针对销售职位定制的工作经历，更加专业<br/>可以更加充分的展示你的工作能力</p>
+					<h3>添加工作经历</h3>
+				</div>
+			</div>
+
+			<div class="block2"  v-bind:class="{'aaa':cur5.isA}">
+				<div class="lianxi jingli clearfix" id="div-bd">
+					<div id="jishu"><input class="mas1" type="text" v-model="hiswork.company">
+					<input class="mas2" class="in1" type="text" v-model="hiswork.position"></div>
+					
+					<div class="xl" id="xxl9">
+						<p id="p9">开始年份<span></span></p>
+						<select id="oul9">
+							<option>2016</option>
+							<option>2015</option>
+							<option>2014</option>
+							<option>2013</option>
+							<option>2013前</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl10">
+						<p id="p10">开始月份<span></span></p>
+						<select id="oul10">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</optioni>
+						</select>
+					</div>
+					<div class="xl" id="xxl11">
+						<p id="p11">结束年份<span></span></p>
+						<select id="oul11">
+							<option>2016</option>
+							<option>2015</option>
+							<option>2014</option>
+							<option>2013</option>
+							<option>2013前</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl12">
+						<p id="p12">结束月份<span></span></p>
+						<select id="oul12">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</optioni>
+						</select>
+					</div>
+					<label class="gang"><input type="checkbox"  name="work"/>管理岗位</label>
+					<input class="ma9" type="text" value="">
+					<input class="ma10" class="in1" type="text" value="">
+					<textarea>从招聘，培训，团队建设，销售目标等角度描述管理方面的成绩</textarea>
+					<div class="bg-blue clearfix">
+						<h4>让数据说话，快来展示你的傲人业绩吧~</h4>
+						<div class="in2"><input  class="ma2" type="text" value="月销售额"><p>万元</p></div>
+						<div class="in3"><input id="ma6" class="in1 ma2" type="text" value="年销售额"><p>万元</p></div>
+						<input id="ma11" class="in4" type="text" value="目标完成率">
+						<input id="ma12" class="in4" type="text" value="产品">
+						<div class="xl" id="xxl13">
+							<p id="p13">销售对象<span></span></p>
+							<select id="oul13">
+								<option>小孩</option>
+								<option>学生</option>
+								<option>白领</option>
+								<option>中年</option>
+								<option>老年</option>
+							</select>
+						</div>
+						<input id="ma13" class="in4" type="text" value="销售方式">
+					</div>
+					<label class="gang"><input type="checkbox"  name="work"/>添加更多描述</label>
+					<textarea class="tea"></textarea>
+					<div class="in-le1 clearfix">
+						<p class="savep savep5" v-on:click="save2('cur5',hiswork,resume.work_history)">保存</p><p v-on:click="cancel('cur5',resume.work_history)">取消</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="block3" v-bind:class="{ 'ccc': cur5.isC}">
+				<ol class="ol-la" id="ol-la">
+					<li class="clearfix" v-for="item in resume.work_history" track-by="$index"><p>{{ item.company }}-{{ item.position }}</p><span v-on:click="dele('cur5',$index,resume.work_history)">删除</span><em v-on:click="bj('cur5',item,$index,'hiswork')">编辑</em></li>
+				</ol>
+			</div>
+		</div>
+
+		<div id="oum6" class="box">
+			<div class="blu-b">
+				教育培训<a class="curriy" href="javascript:;"  v-bind:class="{'ccc':cur6.isC}"  v-on:click="add('cur6',-99,'edu')">添加教育经历</a><a class="curriy curjl" href="javascript:;">添加培训经历</a>
+			</div>
+
+			<div class="block1"  v-bind:class="{ 'ddd': cur6.isD}">
+				<div class="cur-1 clearfix">
+					<a class="spft" href="javascript:;"  v-on:click="add('cur6',-99,'edu')"></a>
+					<p>教育培训经历可以充分体现你的专业能力，<br/>更能体现你的学习能力和潜力</p>
+					<h3>添加教育经历</h3><h3>添加培训经历</h3>
+				</div>
+			</div>
+			
+			<div class="block2"  v-bind:class="{'aaa':cur6.isA}">
+				<div class="lianxi jingli clearfix">
+					<input class="ma14" type="text" v-model="edu.school">
+					<input class="ma15" class="in1" type="text" v-model="edu.major">
+					<input class="ma144" type="text cocom" value="教育组织">
+					<input class="ma155" class="in1 cocom" type="text" value="培训专业">
+					<div class="xl" id="xxl14">
+						<p id="p14">开始年份<span></span></p>
+						<select id="oul14">
+							<option>2016</option>
+							<option>2015</option>
+							<option>2014</option>
+							<option>2013</option>
+							<option>2013前</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl15">
+						<p id="p15">开始月份<span></span></p>
+						<select id="oul15">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</optioni>
+						</select>
+					</div>
+					<div class="xl" id="xxl16">
+						<p id="p16">结束年份<span></span></p>
+						<select id="oul16">
+							<option>2016</option>
+							<option>2015</option>
+							<option>2014</option>
+							<option>2013</option>
+							<option>2013前</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl17">
+						<p id="p17">结束月份<span></span></p>
+						<select id="oul17">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</optioni>
+						</select>
+					</div>
+					<div class="xl xlsp" id="xxl18">
+						<p id="p18" >{{ edu.level | typeSelect "学历"}}<span></span></p>
+						<select v-model="edu.level">
+							<option>专科</option>
+							<option>本科</option>
+							<option>硕士</option>
+							<option>博士</option>
+							<option>博士后</option>
+						</select>
+					</div>
+					<div class="in-le1 clearfix">
+						<p class="savep" id="savep6" v-on:click="save2('cur6',edu,resume.edu_history)">保存</p><p>取消</p>
+					</div>
+				</div>
+			</div>
+				
+			
+			<div class="block3" v-bind:class="{ 'ccc': cur6.isC}">
+				<ol class="ol-la" id="ol-la1">
+					<li class="clearfix" v-for="item in resume.edu_history" track-by="$index"><p>{{item.school}} - {{item.major}} - {{item.level}}</p><span v-on:click="dele('cur6',$index,resume.edu_history)">删除</span><span  v-on:click="bj('cur6',item,$index,'edu')">编辑</span></li>
+				</ol>
+			</div>
+		</div>
+		
+		<div id="oum7" class="box">
+			<div class="blu-b">
+				证书<a class="curriy" href="javascript:;"  v-bind:class="{'ccc':cur7.isC}"  v-on:click="add('cur7',-99,'certi')">添加</a>
+			</div>
+
+			<div class="block1"  v-bind:class="{ 'ddd': cur7.isD}">
+				<div class="cur-1 clearfix">
+					<a class="spft" href="javascript:;" v-on:click="add('cur7',-99,'certi')"></a>
+					<p>展示你获取的各种证书<br/>能更多的获取HR的眼球哦</p>
+					<h3>添加证书</h3>
+				</div>
+			</div>
+			
+			<div class="block2"  v-bind:class="{'aaa':cur7.isA}">
+				<div class="lianxi jingli clearfix">
+					<input class="ma16" type="text" v-model="certi.name">
+					<input class="ma17" class="in1" type="text" v-model="certi.rog">
+					<div class="in-le1 clearfix">
+						<p class="savep" id="savep7" v-on:click="save2('cur7',certi,resume.certificate)">保存</p><p>取消</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="block3" v-bind:class="{ 'ccc': cur7.isC}">
+				<ol class="ol-la ol-la3" id="ol-la3">
+					<li class="clearfix" v-for="item in resume.certificate" track-by="$index"><p>{{item.name}}-{{item.rog}}</p><span v-on:click="dele('cur7',$index,resume.certificate)">删除</span><em v-on:click="bj('cur7',item,$index,'certi')">编辑</em></li>
+				</ol>
+			</div>
+		</div>
+			
+		<div id="oum8" class="box">
+			<div class="blu-b">
+				外语水平<a class="curriy" href="javascript:;"  v-bind:class="{'ccc':cur8.isC}"  v-on:click="add('cur8',-99,'level')">添加</a>
+			</div>
+
+			<div class="block1"  v-bind:class="{ 'ddd': cur8.isD}">
+				<div class="cur-1 clearfix">
+					<a class="spft" href="javascript:;" v-on:click="add('cur8',-99,'level')"></a>
+					<p>展现你良好的外语水平<br/>可以提升你的职业竞争力哦</p>
+					<h3>添加外语水平</h3>
+				</div>
+			</div>
+			
+			<div class="block2"  v-bind:class="{'aaa':cur8.isA}">
+				<div class="lianxi jingli clearfix">
+					<div class="xl xlsp xxxma" id="xxl23">
+						<p id="p23">{{level.category|typeSelect "请选择语言"}}<span></span></p>
+						<select id="oul23" v-model="level.category">
+							<option>请选择语言</optioni>
+							<option>英语</optioni>
+							<option>日语</option>
+							<option>法语</option>
+							<option>西班牙语</option>
+							<option>德语</option>
+						</select>
+					</div>
+					<input class="dans" id="ma18" type="text" value="其他">
+					<div class="clear"></div>
+					<div class="xl" id="xxl19">
+						<p id="p19">听力水平<span></span></p>
+						<select id="oul19" class="oul19">
+							<option>较差</option>
+							<option>一般</option>
+							<option>较好</option>
+							<option>优秀</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl20">
+						<p id="p20">口语水平<span></span></p>
+						<select id="oul20" class="oul20">
+							<option>较差</option>
+							<option>一般</option>
+							<option>较好</option>
+							<option>优秀</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl21">
+						<p id="p21">阅读水平<span></span></p>
+						<select id="oul21" class="oul21">
+							<option>较差</option>
+							<option>一般</option>
+							<option>较好</option>
+							<option>优秀</option>
+						</select>
+					</div>
+					<div class="xl" id="xxl22">
+						<p id="p22">写作水平<span></span></p>
+						<select id="oul22" class="oul22">
+							<option>较差</option>
+							<option>一般</option>
+							<option>较好</option>
+							<option>优秀</option>
+						</select>
+					</div>
+					<div class="in-le1 clearfix">
+						<p class="savep" id="savep8" v-on:click="save2('cur8',level,resume.language)">保存</p><p>取消</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="block3" v-bind:class="{ 'ccc': cur8.isC}">
+				<ol class="ol-la langs">
+					<li class="clearfix" v-for="item in resume.language" track-by="$index"><p>{{item.category}}</p><span v-on:click="dele('cur8',$index,resume.language)">删除</span><em v-on:click="bj('cur8',item,$index,'level')">编辑</em></li>
+				</ol>
+			</div>
+		</div>	
+	</div>
+</div>
+<script type="text/javascript">
+	seajs.use("index1",function(abc){
+		abc.init();
+	})
+</script>
+<script type="text/javascript" src="../js/jquery.js" source="widget"></script>
+<script type="text/javascript" src="../js/sea.js" source="widget"></script>
+</body>
+</html>
